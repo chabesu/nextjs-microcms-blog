@@ -3,26 +3,24 @@ import Meta from 'components/meta'
 import Container from 'components/container'
 import Hero from 'components/hero'
 import Posts from 'components/posts'
-import Pagination from 'components/Pagination'
 // import { getPlaiceholder } from 'plaiceholder'
 
 // ローカルの代替アイキャッチ画像
 import { eyecatchLocal } from 'lib/constants'
 
-export default function Home({ posts }) {
+export default function Blog({ posts }) {
   return (
     <Container>
-      <Meta />
-      <Hero title="CUBE" subtitle="アウトプットしてくサイト" imageOn />
+      <Meta pageTitle="ブログ" pageDesc="ブログに記事一覧" />
+      <Hero title="Blog" subtitle="Recent Posts" />
 
       <Posts posts={posts} />
-      <Pagination nextUrl="/blog" nextText="More Posts" />
     </Container>
   )
 }
 
 export async function getStaticProps() {
-  const posts = await getAllPosts(4)
+  const posts = await getAllPosts()
 
   for (const post of posts) {
     if (!post.hasOwnProperty('eyecatch')) {
